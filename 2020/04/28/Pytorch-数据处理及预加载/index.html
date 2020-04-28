@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Tags, ═╬﹎王zんí寳庫﹎╬═">
+    <meta name="keywords" content="Pytorch-数据处理及预加载, ═╬﹎王zんí寳庫﹎╬═">
     <meta name="description" content="天下英才出我辈，飞扬跋扈为谁雄！">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Tags | ═╬﹎王zんí寳庫﹎╬═</title>
+    <title>Pytorch-数据处理及预加载 | ═╬﹎王zんí寳庫﹎╬═</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -427,12 +427,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">tags</h1>
+                    <h1 class="description center-align post-title">Pytorch-数据处理及预加载</h1>
                 </div>
             </div>
         </div>
@@ -442,117 +442,35 @@
 
 
 
-<main class="post-container content">
+<main class="container content">
 
     
-    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
-<style>
-    #articleContent h1::before,
-    #articleContent h2::before,
-    #articleContent h3::before,
-    #articleContent h4::before,
-    #articleContent h5::before,
-    #articleContent h6::before {
-        display: block;
-        content: " ";
-        height: 100px;
-        margin-top: -100px;
-        visibility: hidden;
-    }
-
-    #articleContent :focus {
-        outline: none;
-    }
-
-    .toc-fixed {
-        position: fixed;
-        top: 64px;
-    }
-
-    .toc-widget {
-        width: 345px;
-        padding-left: 20px;
-    }
-
-    .toc-widget .toc-title {
-        margin: 35px 0 15px 0;
-        padding-left: 17px;
-        font-size: 1.5rem;
-        font-weight: bold;
-        line-height: 1.5rem;
-    }
-
-    .toc-widget ol {
-        padding: 0;
-        list-style: none;
-    }
-
-    #toc-content {
-        height: calc(100vh - 250px);
-        overflow: auto;
-    }
-
-    #toc-content ol {
-        padding-left: 10px;
-    }
-
-    #toc-content ol li {
-        padding-left: 10px;
-    }
-
-    #toc-content .toc-link:hover {
-        color: #42b983;
-        font-weight: 700;
-        text-decoration: underline;
-    }
-
-    #toc-content .toc-link::before {
-        background-color: transparent;
-        max-height: 25px;
-
-        position: absolute;
-        right: 23.5vw;
-        display: block;
-    }
-
-    #toc-content .is-active-link {
-        color: #42b983;
-    }
-
-    #floating-toc-btn {
-        position: fixed;
-        right: 15px;
-        bottom: 76px;
-        padding-top: 15px;
-        margin-bottom: 0;
-        z-index: 998;
-    }
-
-    #floating-toc-btn .btn-floating {
-        width: 48px;
-        height: 48px;
-    }
-
-    #floating-toc-btn .btn-floating i {
-        line-height: 48px;
-        font-size: 1.4rem;
-    }
-</style>
-<div class="row">
-    <div id="main-content" class="col s12 m12 l9">
-        <!-- 文章内容详情 -->
+    <!-- 文章内容详情 -->
 <div id="artDetail">
     <div class="card">
         <div class="card-content article-info">
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">No tag</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Pytorch/">
+                                <span class="chip bg-color">Pytorch</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Pytorch/" class="post-category">
+                                Pytorch
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -587,7 +505,122 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <script>
+                <h1 id="Pytorch基础：数据加载和预处理"><a href="#Pytorch基础：数据加载和预处理" class="headerlink" title="Pytorch基础：数据加载和预处理"></a>Pytorch基础：数据加载和预处理</h1><p>Pytorch通过torch.utils.data对数据实现封装，可以容易的实现多线程数据预读和批量加载</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> torch
+torch<span class="token punctuation">.</span>__version__<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre><code>'1.1.0'</code></pre><h3 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h3><p>Dataset是一个抽象类，为方便读取，需要将使用的数据包装为Dataset类。自定义Dataset需要继承它并实现他的两个方法：</p>
+<ol>
+<li><strong>getitem</strong>() 该方法定义用索引（0到self.len）获取一条数据或一个样本</li>
+<li><strong>len</strong>() 该方法返回数据总长度</li>
+</ol>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> torch<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>data <span class="token keyword">import</span> Dataset
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+
+
+<span class="token comment" spellcheck="true"># 定义一个数据类</span>
+<span class="token keyword">class</span> <span class="token class-name">Diabetes</span><span class="token punctuation">(</span>Dataset<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        super<span class="token punctuation">(</span>Diabetes<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        data <span class="token operator">=</span> np<span class="token punctuation">.</span>loadtxt<span class="token punctuation">(</span><span class="token string">'.//data//diabetes.csv.gz'</span><span class="token punctuation">,</span>
+                          delimiter<span class="token operator">=</span><span class="token string">','</span><span class="token punctuation">,</span>
+                          dtype<span class="token operator">=</span>np<span class="token punctuation">.</span>float32<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>len <span class="token operator">=</span> data<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+        self<span class="token punctuation">.</span>x_data <span class="token operator">=</span> torch<span class="token punctuation">.</span>from_numpy<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>y_data <span class="token operator">=</span> torch<span class="token punctuation">.</span>from_numpy<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true"># 根据index返回一行数据</span>
+    <span class="token keyword">def</span> <span class="token function">__getitem__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> index<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>x_data<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>y_data<span class="token punctuation">[</span>index<span class="token punctuation">]</span>
+
+    <span class="token keyword">def</span> <span class="token function">__len__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true"># 返回data长度</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>len<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>len</strong> 方法可以直接使用len获取数据总数</p>
+<pre class="line-numbers language-python"><code class="language-python">diabetes <span class="token operator">=</span> Diabetes<span class="token punctuation">(</span><span class="token punctuation">)</span>
+len<span class="token punctuation">(</span>diabetes<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre><code>759</code></pre><h3 id="DataLoader"><a href="#DataLoader" class="headerlink" title="DataLoader"></a>DataLoader</h3><p>DataLoader提供了对Dataset的读取操作，常用的参数：batch_size（每个批次大小），shuffle（是否进行shuffle操作），num_workers（加载数据时使用几个子进程）</p>
+<pre class="line-numbers language-python"><code class="language-python">d <span class="token operator">=</span> torch<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>data<span class="token punctuation">.</span>DataLoader<span class="token punctuation">(</span>diabetes<span class="token punctuation">,</span>
+                                batch_size<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">,</span>
+                                shuffle<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>
+                                num_workers<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>DataLoader返回一个可迭代对象，可使用迭代器分批次获取</p>
+<pre class="line-numbers language-python"><code class="language-python">itdata <span class="token operator">=</span> iter<span class="token punctuation">(</span>d<span class="token punctuation">)</span>
+next<span class="token punctuation">(</span>itdata<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre><code>[tensor([[ 0.7647,  0.3668,  0.1475, -0.3535, -0.7400,  0.1058, -0.9360, -0.2667],
+         [-0.8824,  0.0050,  0.0820, -0.6970, -0.8676, -0.2966, -0.4979, -0.8333],
+         [-0.5294,  0.3668,  0.1475,  0.0000,  0.0000, -0.0700, -0.0572, -0.9667],
+         [ 0.0000,  0.4171,  0.0000,  0.0000,  0.0000,  0.2638, -0.8915, -0.7333],
+         [-0.7647,  0.0854,  0.0164, -0.3535, -0.8676, -0.2489, -0.9573,  0.0000],
+         [-0.5294,  0.1256,  0.2787, -0.1919,  0.0000,  0.1744, -0.8651, -0.4333],
+         [-0.7647, -0.1859, -0.0164, -0.5556,  0.0000, -0.1744, -0.8190, -0.8667],
+         [-0.7647,  0.1859,  0.3115,  0.0000,  0.0000,  0.2787, -0.4748,  0.0000],
+         [-0.8824,  0.1256,  0.3115, -0.0909, -0.6879,  0.0373, -0.8813, -0.9000],
+         [ 0.0000,  0.4673,  0.3443,  0.0000,  0.0000,  0.2072,  0.4543, -0.2333]]),
+ tensor([[0.],
+         [1.],
+         [0.],
+         [0.],
+         [1.],
+         [1.],
+         [1.],
+         [0.],
+         [1.],
+         [1.]])]</code></pre><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 常见用法是使用for循环遍历</span>
+<span class="token keyword">for</span> i<span class="token punctuation">,</span> data <span class="token keyword">in</span> enumerate<span class="token punctuation">(</span>d<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> data<span class="token punctuation">)</span>
+    <span class="token keyword">break</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre><code>0 [tensor([[ 0.0000,  0.1859,  0.3770, -0.0505, -0.4563,  0.3651, -0.5961, -0.6667],
+        [ 0.0588, -0.1055,  0.0164,  0.0000,  0.0000, -0.3294, -0.9453, -0.6000],
+        [ 0.0000,  0.1759,  0.0820, -0.3737, -0.5556, -0.0820, -0.6456, -0.9667],
+        [ 0.1765,  0.6884,  0.2131,  0.0000,  0.0000,  0.1326, -0.6080, -0.5667],
+        [-0.7647,  0.4673,  0.0000,  0.0000,  0.0000, -0.1803, -0.8617, -0.7667],
+        [-0.1765,  0.1457,  0.2459, -0.6566, -0.7400, -0.2906, -0.6687, -0.6667],
+        [-0.7647,  0.1256,  0.0820, -0.5556,  0.0000, -0.2548, -0.8044, -0.9000],
+        [-0.8824,  0.3367,  0.6721, -0.4343, -0.6690, -0.0224, -0.8668, -0.2000],
+        [-0.8824,  0.6784,  0.2131, -0.6566, -0.6596, -0.3025, -0.6849, -0.6000],
+        [-0.8824,  0.1658,  0.2787, -0.4141, -0.5745,  0.0760, -0.6430, -0.8667]]), tensor([[0.],
+        [1.],
+        [1.],
+        [0.],
+        [0.],
+        [1.],
+        [1.],
+        [0.],
+        [0.],
+        [1.]])]</code></pre><h3 id="torchvision"><a href="#torchvision" class="headerlink" title="torchvision"></a>torchvision</h3><p>torchvision是Pytorch中用来处理图像的库<br>torchvision.datasets 为Pytorch官方定义的dataset：可直接使用MNIST、COCO、Detetion、LSUN、CIFAR10等</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> torchvision <span class="token keyword">import</span> datasets<span class="token punctuation">,</span> transforms
+trainset <span class="token operator">=</span> datasets<span class="token punctuation">.</span>MNIST<span class="token punctuation">(</span>
+    root<span class="token operator">=</span><span class="token string">'.//data//'</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true"># 加载MNIST数据的目录</span>
+    train<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true"># 标识加载数据集，为false时为测试集</span>
+    download<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true"># 是否自动下载数据</span>
+    transform<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 是否需要对数据进行预处理， None时不进行预处理</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="torchvision-models"><a href="#torchvision-models" class="headerlink" title="torchvision.models"></a>torchvision.models</h3><p>torchvision还提供了训练好的模型，可以在进行迁移学习torchvision.models模块的子模块中包含以下结构：  </p>
+<ul>
+<li>AlexNet</li>
+<li>VGG</li>
+<li>ResNet</li>
+<li>SqueezeNet</li>
+<li>DenseNet</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> torchvision <span class="token keyword">import</span> models
+resnet18 <span class="token operator">=</span> models<span class="token punctuation">.</span>resnet18<span class="token punctuation">(</span>pretrained<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre><code>Downloading: "https://download.pytorch.org/models/resnet18-5c106cde.pth" to C:\Users\Zephyrus/.cache\torch\checkpoints\resnet18-5c106cde.pth
+
+
+
+---------------------------------------------------------------------------</code></pre><h3 id="torchvision-transforms"><a href="#torchvision-transforms" class="headerlink" title="torchvision.transforms"></a>torchvision.transforms</h3><p>transforms模块提供了一般的图像转换操作类，用于数据处理和数据增强</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> torchvision <span class="token keyword">import</span> transforms
+
+transform <span class="token operator">=</span> transforms<span class="token punctuation">.</span>Compose<span class="token punctuation">(</span><span class="token punctuation">[</span>
+    transforms<span class="token punctuation">.</span>RandomCrop<span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">,</span> padding<span class="token operator">=</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true"># 先四周填充0，把图像随机裁剪成32x32</span>
+    transforms<span class="token punctuation">.</span>RandomHorizontalFlip<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true"># 把图像一般概率翻转，一半的概率不翻转</span>
+    transforms<span class="token punctuation">.</span>RandomRotation<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">45</span><span class="token punctuation">,</span> <span class="token number">45</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true"># 随机旋转</span>
+    transforms<span class="token punctuation">.</span>ToTensor<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    transforms<span class="token punctuation">.</span>Normalize<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">0.4914</span><span class="token punctuation">,</span> <span class="token number">0.4822</span><span class="token punctuation">,</span> <span class="token number">0.4465</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                         <span class="token punctuation">(</span><span class="token number">0.229</span><span class="token punctuation">,</span> <span class="token number">0.224</span><span class="token punctuation">,</span> <span class="token number">0.225</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># RGB每层的归一化用到的均值和方差</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><a href="https://discuss.pytorch.org/t/normalization-in-mnist-example/457/21" target="_blank" rel="noopener">关于(0.4914, 0.4822, 0.4465),(0.229, 0.224, 0.225)</a>详情说明，这些是根据ImageNet训练的归一化参数，可以直接使用，可认为为固定值</p>
+<script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -630,7 +663,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://mysite.com/tags/index.html">http://mysite.com/tags/index.html</a>
+                    <a href="http://mysite.com/2020/04/28/Pytorch-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E5%8F%8A%E9%A2%84%E5%8A%A0%E8%BD%BD/">http://mysite.com/2020/04/28/Pytorch-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E5%8F%8A%E9%A2%84%E5%8A%A0%E8%BD%BD/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -667,7 +700,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">No tag</span>
+                            
+                                <a href="/tags/Pytorch/">
+                                    <span class="chip bg-color">Pytorch</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -838,22 +875,22 @@
                 <i class="far fa-dot-circle"></i>&nbsp;Current
             </div>
             <div class="card">
-                <a href="/tags/index.html">
+                <a href="/2020/04/28/Pytorch-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E5%8F%8A%E9%A2%84%E5%8A%A0%E8%BD%BD/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="tags">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Pytorch-数据处理及预加载">
                         
-                        <span class="card-title">tags</span>
+                        <span class="card-title">Pytorch-数据处理及预加载</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return
+                            Pytorch基础：数据加载和预处理Pytorch通过torch.utils.data对数据实现封装，可以容易的实现多线程数据预读和批量加载
+import torch
+torch.__version__
+'1.1.0'DatasetData
                         
                     </div>
                     <div class="publish-info">
@@ -862,13 +899,25 @@
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Fair Wang
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Pytorch/" class="post-category">
+                                    Pytorch
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Pytorch/">
+                        <span class="chip bg-color">Pytorch</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -876,25 +925,22 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                Current&nbsp;<i class="far fa-dot-circle"></i>
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/tags/index.html">
+                <a href="/2020/04/28/Pytorch-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%92%8C%E4%BC%98%E5%8C%96%E5%99%A8/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="tags">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Pytorch-神经网络和优化器">
                         
-                        <span class="card-title">tags</span>
+                        <span class="card-title">Pytorch-神经网络和优化器</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return
+                            Pytorch基础：神经网络和优化器torch.nn是为神经网络设计的模块化接口。nn构建与autograd上，可用来定义和运行神经网络nn.functional是神经网络中使用的一些常用的函数，（不具有可学习参数，如ReLU、pool、D
                         
                     </div>
                     <div class="publish-info">
@@ -903,13 +949,24 @@
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Fair Wang
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Pytorch/" class="post-category">
+                                    Pytorch
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Pytorch/">
+                        <span class="chip bg-color">Pytorch</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -983,104 +1040,17 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 </style>
 
 
-    </div>
-    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
-        <div class="toc-widget">
-            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
-            <div id="toc-content"></div>
-        </div>
-    </div>
-</div>
-
-<!-- TOC 悬浮按钮. -->
-
-<div id="floating-toc-btn" class="hide-on-med-and-down">
-    <a class="btn-floating btn-large bg-color">
-        <i class="fas fa-list-ul"></i>
-    </a>
-</div>
-
-
-<script src="/libs/tocbot/tocbot.min.js"></script>
-<script>
-    $(function () {
-        tocbot.init({
-            tocSelector: '#toc-content',
-            contentSelector: '#articleContent',
-            headingsOffset: -($(window).height() * 0.4 - 45),
-            collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
-        });
-
-        // modify the toc link href to support Chinese.
-        let i = 0;
-        let tocHeading = 'toc-heading-';
-        $('#toc-content a').each(function () {
-            $(this).attr('href', '#' + tocHeading + (++i));
-        });
-
-        // modify the heading title id to support Chinese.
-        i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
-            $(this).attr('id', tocHeading + (++i));
-        });
-
-        // Set scroll toc fixed.
-        let tocHeight = parseInt($(window).height() * 0.4 - 64);
-        let $tocWidget = $('.toc-widget');
-        $(window).scroll(function () {
-            let scroll = $(window).scrollTop();
-            /* add post toc fixed. */
-            if (scroll > tocHeight) {
-                $tocWidget.addClass('toc-fixed');
-            } else {
-                $tocWidget.removeClass('toc-fixed');
-            }
-        });
-
-        
-        /* 修复文章卡片 div 的宽度. */
-        let fixPostCardWidth = function (srcId, targetId) {
-            let srcDiv = $('#' + srcId);
-            if (srcDiv.length === 0) {
-                return;
-            }
-
-            let w = srcDiv.width();
-            if (w >= 450) {
-                w = w + 21;
-            } else if (w >= 350 && w < 450) {
-                w = w + 18;
-            } else if (w >= 300 && w < 350) {
-                w = w + 16;
-            } else {
-                w = w + 14;
-            }
-            $('#' + targetId).width(w);
-        };
-
-        // 切换TOC目录展开收缩的相关操作.
-        const expandedClass = 'expanded';
-        let $tocAside = $('#toc-aside');
-        let $mainContent = $('#main-content');
-        $('#floating-toc-btn .btn-floating').click(function () {
-            if ($tocAside.hasClass(expandedClass)) {
-                $tocAside.removeClass(expandedClass).hide();
-                $mainContent.removeClass('l9');
-            } else {
-                $tocAside.addClass(expandedClass).show();
-                $mainContent.addClass('l9');
-            }
-            fixPostCardWidth('artDetail', 'prenext-posts');
-        });
-        
-    });
-</script>
-
     
 
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
 
 
 
