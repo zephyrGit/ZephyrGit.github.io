@@ -464,7 +464,7 @@
 
 <script>
     // 每天切换 banner 图.  Switch banner image every day.
-    $('.bg-cover').css('background-image', 'url(/medias/banner/3.jpg)');
+    $('.bg-cover').css('background-image', 'url(/medias/banner/6.jpg)');
 </script>
 
 
@@ -658,7 +658,7 @@
         },
         xAxis: {
             type: 'category',
-            data: ["2019-04","2019-05","2019-06","2019-07","2019-08","2019-09","2019-10","2019-11","2019-12","2020-01","2020-02","2020-03","2020-04"]
+            data: ["2019-05","2019-06","2019-07","2019-08","2019-09","2019-10","2019-11","2019-12","2020-01","2020-02","2020-03","2020-04","2020-05"]
         },
         yAxis: {
             type: 'value',
@@ -668,7 +668,7 @@
                 name: 'Number of posts',
                 type: 'line',
                 color: ['#6772e5'],
-                data: [0,0,0,0,0,0,0,0,0,0,0,0,8],
+                data: [0,0,0,0,0,0,0,0,0,0,0,8,0],
                 markPoint: {
                     symbolSize: 45,
                     color: ['#fa755a','#3ecf8e','#82d3f4'],
@@ -917,11 +917,11 @@
         <div class="tag-chips center-align">
             
             
+            
+            
             <a href="/tags/Pytorch/">
                 <span class="chip center-align waves-effect waves-light chip-default">Pytorch</span>
             </a>
-            
-            
             
             
         </div>
@@ -1227,6 +1227,6 @@ $(function () {
     <script src="/js/cursor.js"></script>
 
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/z16.model.json"},"log":false});</script></body>
 
 </html>
