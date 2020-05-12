@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Pytorch-神经网络, ═╬﹎王zんí寳庫﹎╬═">
+    <meta name="keywords" content="Pytorch基础-Logistic回归, ═╬﹎王zんí寳庫﹎╬═">
     <meta name="description" content="天下英才出我辈，飞扬跋扈为谁雄！">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Pytorch-神经网络 | ═╬﹎王zんí寳庫﹎╬═</title>
+    <title>Pytorch基础-Logistic回归 | ═╬﹎王zんí寳庫﹎╬═</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -427,12 +427,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Pytorch-神经网络</h1>
+                    <h1 class="description center-align post-title">Pytorch基础-Logistic回归</h1>
                 </div>
             </div>
         </div>
@@ -458,10 +458,6 @@
                                 <span class="chip bg-color">Pytorch</span>
                             </a>
                         
-                            <a href="/tags/Python/">
-                                <span class="chip bg-color">Python</span>
-                            </a>
-                        
                     </div>
                     
                 </div>
@@ -474,6 +470,10 @@
                                 Pytorch
                             </a>
                         
+                            <a href="/categories/Pytorch/Python/" class="post-category">
+                                Python
+                            </a>
+                        
                     </div>
                     
                 </div>
@@ -483,7 +483,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-04-29
+                    2020-05-12
                 </div>
                 
 
@@ -497,14 +497,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.5k
+                    613
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
-                    6 Min
+                    3 Min
                 </div>
                 
 
@@ -519,74 +519,77 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h2><p>神经网络是由具有适应性的简单单元组成的广泛并行互联的网络，他的组织能够模拟生物神经系统对真实世界物体做出的交互反应</p>
-<p>在深度学习中也借鉴了这样的结构，每一个神经元接受输入x，通过带权重w的连接进行传递，将总输入的信号与神经元的阈值进行比较，最后通过激活函数处理确定是否激活，并将激活后的计算结果y输出；训练即训练权重w</p>
-<h3 id="神经网络表示"><a href="#神经网络表示" class="headerlink" title="神经网络表示"></a>神经网络表示</h3><p>将神经元拼接，两层神经元，即输入层+输出层（M-P)构成感知机。而多层功能神经元相连构成神经网络，输入层与输出层之间的所有层神经元，称为感知层；</p>
-<h3 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h3><p>神经网络中的激活函数就是用来判断我们所计算的信息是否达到了往后面传输的条件<br>在神经网络计算过程中，每层都相当于矩阵相乘，无论神经网络有多少层输入都是输入的线性组合，每一层矩阵相乘获得的信息差距不大，所以需要激活函数来引入非线性因素，是的神经网络可以任意逼近任何非线性函数，这样神经网络就可以应用到众多的非线性模型中，增加和神经网络模型的泛化特性</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> torch
-<span class="token keyword">import</span> torch<span class="token punctuation">.</span>nn<span class="token punctuation">.</span>functional <span class="token keyword">as</span> F
-<span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
+                <pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> torch
+<span class="token keyword">import</span> torch<span class="token punctuation">.</span>nn <span class="token keyword">as</span> nn
 <span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
-x <span class="token operator">=</span> torch<span class="token punctuation">.</span>linspace<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="sigmoid函数"><a href="#sigmoid函数" class="headerlink" title="sigmoid函数"></a>sigmoid函数</h4><p>$a = \cfrac{1}{1+e^-z}$ 导数：$a’=a(1-a)$ </p>
-<p>在sigmoid函数中，其输入是在(0,1)区间，它能把输入的连续实值变换为0到1之间的输出，如果是非常大的负数，那么输出就是0；如果是非常大的正数输出就是1，起到了抑制的作用</p>
-<pre class="line-numbers language-python"><code class="language-python">ax <span class="token operator">=</span> plt<span class="token punctuation">.</span>gca<span class="token punctuation">(</span><span class="token punctuation">)</span>
-ax<span class="token punctuation">.</span>spines<span class="token punctuation">[</span><span class="token string">'right'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>set_color<span class="token punctuation">(</span><span class="token string">'none'</span><span class="token punctuation">)</span>
-ax<span class="token punctuation">.</span>spines<span class="token punctuation">[</span><span class="token string">'top'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>set_color<span class="token punctuation">(</span><span class="token string">'none'</span><span class="token punctuation">)</span>
-ax<span class="token punctuation">.</span>xaxis<span class="token punctuation">.</span>set_ticks_position<span class="token punctuation">(</span><span class="token string">'bottom'</span><span class="token punctuation">)</span>
-ax<span class="token punctuation">.</span>spines<span class="token punctuation">[</span><span class="token string">'bottom'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>set_position<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">'data'</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-ax<span class="token punctuation">.</span>yaxis<span class="token punctuation">.</span>set_ticks_position<span class="token punctuation">(</span><span class="token string">'left'</span><span class="token punctuation">)</span>
-ax<span class="token punctuation">.</span>spines<span class="token punctuation">[</span><span class="token string">'left'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>set_position<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">'data'</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-plt<span class="token punctuation">.</span>ylim<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-sigmoid <span class="token operator">=</span> torch<span class="token punctuation">.</span>sigmoid<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
-plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>x<span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> sigmoid<span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre><code>[&lt;matplotlib.lines.Line2D at 0x1dda740f408&gt;]</code></pre><p><img src="https://img-blog.csdnimg.cn/20200429095138192.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmd4dzE4MDM=,size_16,color_FFFFFF,t_70#pic_center" alt="1"></p>
-<p>sigmoid由于需要指数训练，再加上函数输出不是以0为中心的（权重更新效率低），当输入远离坐标原点，函数的梯度就变得很小（几乎为0）。在神经网络反向传播的过程中不利于权重优化，这个问题叫梯度饱和，也叫梯度弥散。所以sigmoid基本上只在做二元分类(0,1)时的输出层才会使用</p>
-<h4 id="tanh函数"><a href="#tanh函数" class="headerlink" title="tanh函数"></a>tanh函数</h4><p>$a=\cfrac{e^z - e^{-z}}{e^z+e^{-z}}$ 导数：$a’=1-a^2$</p>
-<p>tanh是双曲线正切函数，输输出区间在(-1, 1)之间，函数以0为中心</p>
-<pre class="line-numbers language-python"><code class="language-python">ax <span class="token operator">=</span> plt<span class="token punctuation">.</span>gca<span class="token punctuation">(</span><span class="token punctuation">)</span>
-ax<span class="token punctuation">.</span>spines<span class="token punctuation">[</span><span class="token string">'right'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>set_color<span class="token punctuation">(</span><span class="token string">'none'</span><span class="token punctuation">)</span>
-ax<span class="token punctuation">.</span>spines<span class="token punctuation">[</span><span class="token string">'top'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>set_color<span class="token punctuation">(</span><span class="token string">'none'</span><span class="token punctuation">)</span>
-ax<span class="token punctuation">.</span>xaxis<span class="token punctuation">.</span>set_ticks_position<span class="token punctuation">(</span><span class="token string">'bottom'</span><span class="token punctuation">)</span>
-ax<span class="token punctuation">.</span>spines<span class="token punctuation">[</span><span class="token string">'bottom'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>set_position<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">'data'</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-ax<span class="token punctuation">.</span>yaxis<span class="token punctuation">.</span>set_ticks_position<span class="token punctuation">(</span><span class="token string">'left'</span><span class="token punctuation">)</span>
-ax<span class="token punctuation">.</span>spines<span class="token punctuation">[</span><span class="token string">'left'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>set_position<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">'data'</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-plt<span class="token punctuation">.</span>ylim<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-tanh <span class="token operator">=</span> torch<span class="token punctuation">.</span>tanh<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
-plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>x<span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> tanh<span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre><code>[&lt;matplotlib.lines.Line2D at 0x1dda38bf2c8&gt;]</code></pre><p><img src="https://img-blog.csdnimg.cn/20200429095157750.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmd4dzE4MDM=,size_16,color_FFFFFF,t_70#pic_center" alt="2"></p>
-<p>与sigmoid函数类似，当输入稍微远离了坐标原点，梯度还是很小，但是tanh是以0为中心点，使用tanh作为激活函数，可以起到归一化（均值为0）效果</p>
-<h4 id="ReLU函数"><a href="#ReLU函数" class="headerlink" title="ReLU函数"></a>ReLU函数</h4><p>ReLu(Rectified Linear Units)修正线性单元<br>$a = max(0, z)$导数大于0时1，小于0时0；即z&gt;0时，梯度始终为1，从而提高了神经网络基于梯度算法的运算速度。当z&lt;0时，梯度一直为0。ReLU函数只有线性关系(只需判断输入是否大于0)不管前向传播还是反向传播，都比sigmoid和tanh速度快</p>
-<pre class="line-numbers language-python"><code class="language-python">ax <span class="token operator">=</span> plt<span class="token punctuation">.</span>gca<span class="token punctuation">(</span><span class="token punctuation">)</span>
-ax<span class="token punctuation">.</span>spines<span class="token punctuation">[</span><span class="token string">'right'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>set_color<span class="token punctuation">(</span><span class="token string">'none'</span><span class="token punctuation">)</span>
-ax<span class="token punctuation">.</span>spines<span class="token punctuation">[</span><span class="token string">'top'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>set_color<span class="token punctuation">(</span><span class="token string">'none'</span><span class="token punctuation">)</span>
-ax<span class="token punctuation">.</span>xaxis<span class="token punctuation">.</span>set_ticks_position<span class="token punctuation">(</span><span class="token string">'bottom'</span><span class="token punctuation">)</span>
-ax<span class="token punctuation">.</span>spines<span class="token punctuation">[</span><span class="token string">'bottom'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>set_position<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">'data'</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-ax<span class="token punctuation">.</span>yaxis<span class="token punctuation">.</span>set_ticks_position<span class="token punctuation">(</span><span class="token string">'left'</span><span class="token punctuation">)</span>
-ax<span class="token punctuation">.</span>spines<span class="token punctuation">[</span><span class="token string">'left'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>set_position<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">'data'</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-plt<span class="token punctuation">.</span>ylim<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span>
-relu <span class="token operator">=</span> F<span class="token punctuation">.</span>relu<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
-plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>x<span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> relu<span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre><code>[&lt;matplotlib.lines.Line2D at 0x1ddaa52a948&gt;]</code></pre><p><img src="https://img-blog.csdnimg.cn/20200429095213918.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmd4dzE4MDM=,size_16,color_FFFFFF,t_70#pic_center" alt="3"></p>
-<p>当输入为负数的时候，ReLU函数完全不被激活的。这表明如果输入为负数，ReLU会死掉，但是到了反向传播的时候，输入负数，梯度会完全到0</p>
-<h4 id="Leaky-ReLU函数"><a href="#Leaky-ReLU函数" class="headerlink" title="Leaky ReLU函数"></a>Leaky ReLU函数</h4><p>为了解决ReLu函数z&lt;0的问题，出现了Leaky ReLU函数，保证在z&lt;0的时候，梯度仍不为0，ReLu的前半段设为az而不是0，通常a=0.01 $a=max(az,z)$</p>
-<pre class="line-numbers language-python"><code class="language-python">ax <span class="token operator">=</span> plt<span class="token punctuation">.</span>gca<span class="token punctuation">(</span><span class="token punctuation">)</span>
-ax<span class="token punctuation">.</span>spines<span class="token punctuation">[</span><span class="token string">'right'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>set_color<span class="token punctuation">(</span><span class="token string">'none'</span><span class="token punctuation">)</span>
-ax<span class="token punctuation">.</span>spines<span class="token punctuation">[</span><span class="token string">'top'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>set_color<span class="token punctuation">(</span><span class="token string">'none'</span><span class="token punctuation">)</span>
-ax<span class="token punctuation">.</span>xaxis<span class="token punctuation">.</span>set_ticks_position<span class="token punctuation">(</span><span class="token string">'bottom'</span><span class="token punctuation">)</span>
-ax<span class="token punctuation">.</span>spines<span class="token punctuation">[</span><span class="token string">'bottom'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>set_position<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">'data'</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-ax<span class="token punctuation">.</span>yaxis<span class="token punctuation">.</span>set_ticks_position<span class="token punctuation">(</span><span class="token string">'left'</span><span class="token punctuation">)</span>
-ax<span class="token punctuation">.</span>spines<span class="token punctuation">[</span><span class="token string">'left'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>set_position<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">'data'</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-plt<span class="token punctuation">.</span>ylim<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span>
-lrelu <span class="token operator">=</span> F<span class="token punctuation">.</span>leaky_relu<span class="token punctuation">(</span>x<span class="token punctuation">,</span> <span class="token number">0.09</span><span class="token punctuation">)</span>
-plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>x<span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> lrelu<span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre><code>[&lt;matplotlib.lines.Line2D at 0x1ddaaceb4c8&gt;]</code></pre><p><img src="https://img-blog.csdnimg.cn/20200429095233894.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dhbmd4dzE4MDM=,size_16,color_FFFFFF,t_70#pic_center" alt="4"></p>
-<p>理论上讲，Leaky ReLu有ReLU的所有优点，但是没有完全证明Leaky ReLU总体好于ReLU<br>ReLU目前仍时常用的activation function，在隐藏层中优先尝试</p>
-<h3 id="前向传播和反向传播"><a href="#前向传播和反向传播" class="headerlink" title="前向传播和反向传播"></a>前向传播和反向传播</h3><h4 id="前向传播"><a href="#前向传播" class="headerlink" title="前向传播"></a>前向传播</h4><p>对于一个神经网络来说，把输入特征$a^{[0]}$这个输入值就是输入的x，放入第一层并计算第一层的激活函数，用$a^{[1]}$表示，本层中的训练结果用$W^{[1]}$和$b^{[1]}$表示，这两个及计算结果$Z^{[1]}$值都需要进行缓存，往后依此类推，直到最后计算出$z^{[L]}$值。这个第L层的输出值即为网络的预测值。正向传播其实就是输入x经过一系列计网络计算得到y的过程</p>
-<h4 id="反向传播"><a href="#反向传播" class="headerlink" title="反向传播"></a>反向传播</h4><p>对于反向传播:就是对正向传播的一些列的反向迭代，通过反向计算梯度，来优化需要训练的W和b。$\delta a^{[l]}$值进行求导得到$\delta a^{[l-1]}$，以此类推直到得到$\delta a^{[2]}$和$\delta a^{[1]}$。反向春波步骤中也会输出$\delta W^{[l]}$和$\delta b{[l]}$。这一步已得到权重的变化量</p>
-<p>$W = W - \alpha \delta W$</p>
-<p>$b = b - \alpha \delta b$</p>
-<script>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>torch<span class="token punctuation">.</span>__version__<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre><code>1.1.0</code></pre><h2 id="Logistic回归"><a href="#Logistic回归" class="headerlink" title="Logistic回归"></a>Logistic回归</h2><p>logistic回归是一中广义线性回归，与多重线性回归分析有很多相同之处。它们模型形式上基本相同，都具有wx+b,其中w和b是待求解参数，区别在于因变量不同，多重线性回归直接将wx+b作为因变量，即y=wx+b，而logistic回归则通过函数L将wx+b对应一个隐状态p，p=L(wx+b)，根据p与1-p的大小决定因变量的值。</p>
+<p>L为logistic函数时为logistic回归，L为多项式函数时为多项式回归  </p>
+<p>logistic回归主要进行二分类预测：sigmoid函数就是常见的logistic函数，因为sigmoid函数的输出时0~1之间的概率，当概率大于0.5时预测为1，小于0.5时为0  </p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 加载数据</span>
+data <span class="token operator">=</span> np<span class="token punctuation">.</span>loadtxt<span class="token punctuation">(</span><span class="token string">'./data/german.data-numeric'</span><span class="token punctuation">)</span>
+n<span class="token punctuation">,</span> l <span class="token operator">=</span> data<span class="token punctuation">.</span>shape
+<span class="token comment" spellcheck="true"># 数据归一化</span>
+<span class="token keyword">for</span> j <span class="token keyword">in</span> range<span class="token punctuation">(</span>l <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    meanVal <span class="token operator">=</span> np<span class="token punctuation">.</span>mean<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> j<span class="token punctuation">]</span><span class="token punctuation">)</span>
+    stdVal <span class="token operator">=</span> np<span class="token punctuation">.</span>std<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> j<span class="token punctuation">]</span><span class="token punctuation">)</span>
+    data<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> j<span class="token punctuation">]</span> <span class="token operator">-</span> meanVal<span class="token punctuation">)</span> <span class="token operator">/</span> stdVal<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 打乱数据</span>
+np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>shuffle<span class="token punctuation">(</span>data<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 划分训练集和测试集</span>
+train_data <span class="token operator">=</span> data<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">900</span><span class="token punctuation">,</span> <span class="token punctuation">:</span>l <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span>
+train_tag <span class="token operator">=</span> data<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">900</span><span class="token punctuation">,</span> l <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">-</span> <span class="token number">1</span>
+test_data <span class="token operator">=</span> data<span class="token punctuation">[</span><span class="token number">900</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token punctuation">:</span>l <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span>
+test_tag <span class="token operator">=</span> data<span class="token punctuation">[</span><span class="token number">900</span><span class="token punctuation">:</span><span class="token punctuation">,</span> l <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">-</span> <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 定义网络</span>
+<span class="token keyword">class</span> <span class="token class-name">Net</span><span class="token punctuation">(</span>nn<span class="token punctuation">.</span>Module<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        super<span class="token punctuation">(</span>Net<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>fc <span class="token operator">=</span> nn<span class="token punctuation">.</span>Linear<span class="token punctuation">(</span><span class="token number">24</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>sigmoid <span class="token operator">=</span> nn<span class="token punctuation">.</span>Sigmoid<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">forward</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        out <span class="token operator">=</span> self<span class="token punctuation">.</span>fc<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        out <span class="token operator">=</span> self<span class="token punctuation">.</span>sigmoid<span class="token punctuation">(</span>out<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> out<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">test</span><span class="token punctuation">(</span>pred<span class="token punctuation">,</span> lab<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    t <span class="token operator">=</span> pred<span class="token punctuation">.</span>max<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">==</span> lab
+    <span class="token keyword">return</span> torch<span class="token punctuation">.</span>mean<span class="token punctuation">(</span>t<span class="token punctuation">.</span>float<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">net <span class="token operator">=</span> Net<span class="token punctuation">(</span><span class="token punctuation">)</span>
+critertion <span class="token operator">=</span> nn<span class="token punctuation">.</span>CrossEntropyLoss<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 使用交叉熵损失</span>
+optimizer <span class="token operator">=</span> torch<span class="token punctuation">.</span>optim<span class="token punctuation">.</span>Adam<span class="token punctuation">(</span>net<span class="token punctuation">.</span>parameters<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># Adam优化器</span>
+epochs <span class="token operator">=</span> <span class="token number">1000</span>
+
+<span class="token keyword">for</span> epoch <span class="token keyword">in</span> range<span class="token punctuation">(</span>epochs<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    net<span class="token punctuation">.</span>train<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 指定模型为训练模型，计算梯度</span>
+    x <span class="token operator">=</span> torch<span class="token punctuation">.</span>from_numpy<span class="token punctuation">(</span>train_data<span class="token punctuation">)</span><span class="token punctuation">.</span>float<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    y <span class="token operator">=</span> torch<span class="token punctuation">.</span>from_numpy<span class="token punctuation">(</span>train_tag<span class="token punctuation">)</span><span class="token punctuation">.</span>long<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    y_pred <span class="token operator">=</span> net<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+    loss <span class="token operator">=</span> critertion<span class="token punctuation">(</span>y_pred<span class="token punctuation">,</span> y<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 计算损失</span>
+    optimizer<span class="token punctuation">.</span>zero_grad<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 权重置零</span>
+    loss<span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 反向传播</span>
+    optimizer<span class="token punctuation">.</span>step<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>epoch <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token number">100</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+        net<span class="token punctuation">.</span>eval<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#指定模型计算模式</span>
+        test_in <span class="token operator">=</span> torch<span class="token punctuation">.</span>from_numpy<span class="token punctuation">(</span>test_data<span class="token punctuation">)</span><span class="token punctuation">.</span>float<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        test_t <span class="token operator">=</span> torch<span class="token punctuation">.</span>from_numpy<span class="token punctuation">(</span>test_tag<span class="token punctuation">)</span><span class="token punctuation">.</span>long<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        test_out <span class="token operator">=</span> net<span class="token punctuation">(</span>test_in<span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true"># 使用测试函数计算准确率</span>
+        accu <span class="token operator">=</span> test<span class="token punctuation">(</span>test_out<span class="token punctuation">,</span> test_t<span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'epoch: {}, loss: {}, accuracy:{}'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>
+            epoch <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> loss<span class="token punctuation">.</span>item<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> accu<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre><code>epoch: 100, loss: 0.6658604145050049, accuracy:0.699999988079071
+epoch: 200, loss: 0.6306068897247314, accuracy:0.8199999928474426
+epoch: 300, loss: 0.6095178723335266, accuracy:0.8100000023841858
+epoch: 400, loss: 0.5955496430397034, accuracy:0.8100000023841858
+epoch: 500, loss: 0.5853410363197327, accuracy:0.800000011920929
+epoch: 600, loss: 0.5774123072624207, accuracy:0.8199999928474426
+epoch: 700, loss: 0.5710282921791077, accuracy:0.8199999928474426
+epoch: 800, loss: 0.5657661557197571, accuracy:0.8199999928474426
+epoch: 900, loss: 0.5613517165184021, accuracy:0.8199999928474426
+epoch: 1000, loss: 0.5575944185256958, accuracy:0.8199999928474426</code></pre><script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -629,7 +632,7 @@ plt<span class="token punctuation">.</span>plot<span class="token punctuation">(
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://mysite.com/2020/04/29/Pytorch-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">http://mysite.com/2020/04/29/Pytorch-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</a>
+                    <a href="http://mysite.com/2020/05/12/Pytorch%E5%9F%BA%E7%A1%80-Logistic%E5%9B%9E%E5%BD%92/">http://mysite.com/2020/05/12/Pytorch%E5%9F%BA%E7%A1%80-Logistic%E5%9B%9E%E5%BD%92/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -669,10 +672,6 @@ plt<span class="token punctuation">.</span>plot<span class="token punctuation">(
                             
                                 <a href="/tags/Pytorch/">
                                     <span class="chip bg-color">Pytorch</span>
-                                </a>
-                            
-                                <a href="/tags/Python/">
-                                    <span class="chip bg-color">Python</span>
                                 </a>
                             
                         </div>
@@ -840,9 +839,69 @@ plt<span class="token punctuation">.</span>plot<span class="token punctuation">(
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
+            <div class="card">
+                <a href="/2020/05/12/Pytorch%E5%9F%BA%E7%A1%80-Logistic%E5%9B%9E%E5%BD%92/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Pytorch基础-Logistic回归">
+                        
+                        <span class="card-title">Pytorch基础-Logistic回归</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            import torch
+import torch.nn as nn
+import numpy as np
+
+print(torch.__version__)
+1.1.0Logistic回归logistic回归是一中广义线性回归，与多重线性
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-12
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Pytorch/" class="post-category">
+                                    Pytorch
+                                </a>
+                            
+                            <a href="/categories/Pytorch/Python/" class="post-category">
+                                    Python
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Pytorch/">
+                        <span class="chip bg-color">Pytorch</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2020/05/12/Pytorch%E5%9F%BA%E7%A1%80-%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">
                     <div class="card-image">
@@ -862,71 +921,15 @@ plt<span class="token punctuation">.</span>plot<span class="token punctuation">(
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-12
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-12
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
                             <a href="/categories/Pytroch/" class="post-category">
                                     Pytroch
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Pytorch/">
-                        <span class="chip bg-color">Pytorch</span>
-                    </a>
-                    
-                    <a href="/tags/Python/">
-                        <span class="chip bg-color">Python</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/04/29/Pytorch-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="Pytorch-深度学习基础">
-                        
-                        <span class="card-title">Pytorch-深度学习基础</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            Pytorch：深度学习基础及数学原理监督学习和无监督学习常见机器学习方法：
-
-监督学习：通过已有的训练样本（即已知数据及对应的输出）去训练得到一个最优模型，再利用这个模型将所有的输入映射为相应的输出
-无监督学习：没有已训练样本，需要对数据
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-29
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Pytorch/" class="post-category">
-                                    Pytorch
                                 </a>
                             
                             
