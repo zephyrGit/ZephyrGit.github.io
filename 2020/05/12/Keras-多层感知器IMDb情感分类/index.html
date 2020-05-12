@@ -1,0 +1,1421 @@
+<!DOCTYPE HTML>
+<html lang="zh_CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Keras:多层感知器IMDb情感分类, ═╬﹎王zんí寳庫﹎╬═">
+    <meta name="description" content="天下英才出我辈，飞扬跋扈为谁雄！">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Keras:多层感知器IMDb情感分类 | ═╬﹎王zんí寳庫﹎╬═</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">═╬﹎王zんí寳庫﹎╬═</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/categories/Pytorch">
+          
+          <i class="fas fa_bookmark" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>Pytorch</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/categories/Keras">
+          
+          <span>Keras</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/categories/Python">
+          
+          <span>Python</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/categories/Linux">
+          
+          <span>Linux</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/categories/Docker">
+          
+          <span>Docker</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/categories/Others">
+          
+          <span>Others</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/categories/%E9%9A%A8%E7%AD%86">
+          
+          <span>隨筆</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于我</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>联系我</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情连接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">═╬﹎王zんí寳庫﹎╬═</div>
+        <div class="logo-desc">
+            
+            天下英才出我辈，飞扬跋扈为谁雄！
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>
+
+                  <a href="/categories/Pytorch " style="margin-left:50px">
+				  
+				   <i class="fa fas fa_bookmark" style="position: absolute;left:28px" ></i>
+			      
+		          <span>Pytorch</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/categories/Keras " style="margin-left:50px">
+				  
+		          <span>Keras</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/categories/Python " style="margin-left:50px">
+				  
+		          <span>Python</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/categories/Linux " style="margin-left:50px">
+				  
+		          <span>Linux</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/categories/Docker " style="margin-left:50px">
+				  
+		          <span>Docker</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/categories/Others " style="margin-left:50px">
+				  
+		          <span>Others</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/categories/%E9%9A%A8%E7%AD%86 " style="margin-left:50px">
+				  
+		          <span>隨筆</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于我
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			联系我
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情连接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/zephyrGit/zephyrGit.github.io" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/zephyrGit/zephyrGit.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Keras:多层感知器IMDb情感分类</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="container content">
+
+    
+    <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Keras/">
+                                <span class="chip bg-color">Keras</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Keras/" class="post-category">
+                                Keras
+                            </a>
+                        
+                            <a href="/categories/Keras/Python/" class="post-category">
+                                Python
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2020-05-12
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
+                    2020-05-12
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
+                    2.6k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
+                    16 Min
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 下载</span>
+<span class="token keyword">import</span> urllib<span class="token punctuation">.</span>request
+<span class="token keyword">import</span> os
+<span class="token keyword">import</span> tarfile
+
+url <span class="token operator">=</span> <span class="token string">'http://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz'</span>
+filepath <span class="token operator">=</span> <span class="token string">'./data/aclImdb_v1.tar.gz'</span>
+<span class="token keyword">if</span> <span class="token operator">not</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>isfile<span class="token punctuation">(</span>filepath<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    result <span class="token operator">=</span> urllib<span class="token punctuation">.</span>request<span class="token punctuation">.</span>urlretrieve<span class="token punctuation">(</span>url<span class="token punctuation">,</span> filepath<span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'download:'</span><span class="token punctuation">,</span> result<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 解压</span>
+<span class="token keyword">if</span> <span class="token operator">not</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>exists<span class="token punctuation">(</span><span class="token string">'./data/aclImdb'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    tfile <span class="token operator">=</span> tarfile<span class="token punctuation">.</span>open<span class="token punctuation">(</span><span class="token string">'./data/aclImdb_v1.tar.gz'</span><span class="token punctuation">,</span> <span class="token string">'r:gz'</span><span class="token punctuation">)</span>
+    result <span class="token operator">=</span> tfile<span class="token punctuation">.</span>extractall<span class="token punctuation">(</span><span class="token string">'./data/'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> tensorflow <span class="token keyword">as</span> tf
+<span class="token keyword">from</span> tensorflow<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>preprocessing <span class="token keyword">import</span> sequence
+<span class="token keyword">from</span> tensorflow<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>preprocessing<span class="token punctuation">.</span>text <span class="token keyword">import</span> Tokenizer<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> re
+<span class="token keyword">def</span> <span class="token function">rm_tags</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    re_tag <span class="token operator">=</span> re<span class="token punctuation">.</span>compile<span class="token punctuation">(</span><span class="token string">'&lt;[^>]+>'</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> re_tag<span class="token punctuation">.</span>sub<span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">,</span> text<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> os
+
+
+<span class="token keyword">def</span> <span class="token function">read_files</span><span class="token punctuation">(</span>filetype<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    path <span class="token operator">=</span> <span class="token string">'./data/aclImdb/'</span>
+    file_list <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+
+    positive_path <span class="token operator">=</span> path <span class="token operator">+</span> filetype <span class="token operator">+</span> <span class="token string">'/pos/'</span>
+    <span class="token keyword">for</span> f <span class="token keyword">in</span> os<span class="token punctuation">.</span>listdir<span class="token punctuation">(</span>positive_path<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        file_list <span class="token operator">+=</span> <span class="token punctuation">[</span>positive_path <span class="token operator">+</span> f<span class="token punctuation">]</span>
+
+    negative_path <span class="token operator">=</span> path <span class="token operator">+</span> filetype <span class="token operator">+</span> <span class="token string">'/neg/'</span>
+    <span class="token keyword">for</span> f <span class="token keyword">in</span> os<span class="token punctuation">.</span>listdir<span class="token punctuation">(</span>negative_path<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        file_list <span class="token operator">+=</span> <span class="token punctuation">[</span>negative_path <span class="token operator">+</span> f<span class="token punctuation">]</span>
+
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'read'</span><span class="token punctuation">,</span> filetype<span class="token punctuation">,</span> <span class="token string">'files:'</span><span class="token punctuation">,</span> len<span class="token punctuation">(</span>file_list<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    all_labels <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token number">12500</span> <span class="token operator">+</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token number">12500</span><span class="token punctuation">)</span>
+
+    all_texts <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token keyword">for</span> fi <span class="token keyword">in</span> file_list<span class="token punctuation">:</span>
+        <span class="token keyword">with</span> open<span class="token punctuation">(</span>fi<span class="token punctuation">,</span> encoding<span class="token operator">=</span><span class="token string">'utf8'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> file_input<span class="token punctuation">:</span>
+            all_texts <span class="token operator">+=</span> <span class="token punctuation">[</span>rm_tags<span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>file_input<span class="token punctuation">.</span>readlines<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+    <span class="token keyword">return</span> all_labels<span class="token punctuation">,</span> all_texts<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">y_train<span class="token punctuation">,</span> train_text <span class="token operator">=</span> read_files<span class="token punctuation">(</span><span class="token string">'train'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>read train files: 25000</code></pre><pre class="line-numbers language-python"><code class="language-python">y_test<span class="token punctuation">,</span> test_text <span class="token operator">=</span> read_files<span class="token punctuation">(</span><span class="token string">'test'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>read test files: 25000</code></pre><pre class="line-numbers language-python"><code class="language-python">train_text<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>'Bromwell High is a cartoon comedy. It ran at the same time as some other programs about school life, such as "Teachers". My 35 years in the teaching profession lead me to believe that Bromwell High\'s satire is much closer to reality than is "Teachers". The scramble to survive financially, the insightful students who can see right through their pathetic teachers\' pomp, the pettiness of the whole situation, all remind me of the schools I knew and their students. When I saw the episode in which a student repeatedly tried to burn down the school, I immediately recalled ......... at .......... High. A classic line: INSPECTOR: I\'m here to sack one of your teachers. STUDENT: Welcome to Bromwell High. I expect that many adults of my age think that Bromwell High is far fetched. What a pity that it isn\'t!'</code></pre><pre class="line-numbers language-python"><code class="language-python">y_train<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>1</code></pre><pre class="line-numbers language-python"><code class="language-python">train_text<span class="token punctuation">[</span><span class="token number">12501</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>"Airport '77 starts as a brand new luxury 747 plane is loaded up with valuable paintings &amp; such belonging to rich businessman Philip Stevens (James Stewart) who is flying them &amp; a bunch of VIP's to his estate in preparation of it being opened to the public as a museum, also on board is Stevens daughter Julie (Kathleen Quinlan) &amp; her son. The luxury jetliner takes off as planned but mid-air the plane is hi-jacked by the co-pilot Chambers (Robert Foxworth) &amp; his two accomplice's Banker (Monte Markham) &amp; Wilson (Michael Pataki) who knock the passengers &amp; crew out with sleeping gas, they plan to steal the valuable cargo &amp; land on a disused plane strip on an isolated island but while making his descent Chambers almost hits an oil rig in the Ocean &amp; loses control of the plane sending it crashing into the sea where it sinks to the bottom right bang in the middle of the Bermuda Triangle. With air in short supply, water leaking in &amp; having flown over 200 miles off course the problems mount for the survivor's as they await help with time fast running out...Also known under the slightly different tile Airport 1977 this second sequel to the smash-hit disaster thriller Airport (1970) was directed by Jerry Jameson &amp; while once again like it's predecessors I can't say Airport '77 is any sort of forgotten classic it is entertaining although not necessarily for the right reasons. Out of the three Airport films I have seen so far I actually liked this one the best, just. It has my favourite plot of the three with a nice mid-air hi-jacking &amp; then the crashing (didn't he see the oil rig?) &amp; sinking of the 747 (maybe the makers were trying to cross the original Airport with another popular disaster flick of the period The Poseidon Adventure (1972)) &amp; submerged is where it stays until the end with a stark dilemma facing those trapped inside, either suffocate when the air runs out or drown as the 747 floods or if any of the doors are opened &amp; it's a decent idea that could have made for a great little disaster flick but bad unsympathetic character's, dull dialogue, lethargic set-pieces &amp; a real lack of danger or suspense or tension means this is a missed opportunity. While the rather sluggish plot keeps one entertained for 108 odd minutes not that much happens after the plane sinks &amp; there's not as much urgency as I thought there should have been. Even when the Navy become involved things don't pick up that much with a few shots of huge ships &amp; helicopters flying about but there's just something lacking here. George Kennedy as the jinxed airline worker Joe Patroni is back but only gets a couple of scenes &amp; barely even says anything preferring to just look worried in the background.The home video &amp; theatrical version of Airport '77 run 108 minutes while the US TV versions add an extra hour of footage including a new opening credits sequence, many more scenes with George Kennedy as Patroni, flashbacks to flesh out character's, longer rescue scenes &amp; the discovery or another couple of dead bodies including the navigator. While I would like to see this extra footage I am not sure I could sit through a near three hour cut of Airport '77. As expected the film has dated badly with horrible fashions &amp; interior design choices, I will say no more other than the toy plane model effects aren't great either. Along with the other two Airport sequels this takes pride of place in the Razzie Award's Hall of Shame although I can think of lots of worse films than this so I reckon that's a little harsh. The action scenes are a little dull unfortunately, the pace is slow &amp; not much excitement or tension is generated which is a shame as I reckon this could have been a pretty good film if made properly.The production values are alright if nothing spectacular. The acting isn't great, two time Oscar winner Jack Lemmon has said since it was a mistake to star in this, one time Oscar winner James Stewart looks old &amp; frail, also one time Oscar winner Lee Grant looks drunk while Sir Christopher Lee is given little to do &amp; there are plenty of other familiar faces to look out for too.Airport '77 is the most disaster orientated of the three Airport films so far &amp; I liked the ideas behind it even if they were a bit silly, the production &amp; bland direction doesn't help though &amp; a film about a sunken plane just shouldn't be this boring or lethargic. Followed by The Concorde ... Airport '79 (1979)."</code></pre><pre class="line-numbers language-python"><code class="language-python">token <span class="token operator">=</span> Tokenizer<span class="token punctuation">(</span>num_words<span class="token operator">=</span><span class="token number">2000</span><span class="token punctuation">)</span>
+token<span class="token punctuation">.</span>fit_on_texts<span class="token punctuation">(</span>train_text<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">x_train_seq <span class="token operator">=</span> token<span class="token punctuation">.</span>texts_to_sequences<span class="token punctuation">(</span>train_text<span class="token punctuation">)</span>
+x_test_seq <span class="token operator">=</span> token<span class="token punctuation">.</span>texts_to_sequences<span class="token punctuation">(</span>test_text<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">x_train <span class="token operator">=</span> sequence<span class="token punctuation">.</span>pad_sequences<span class="token punctuation">(</span>x_train_seq<span class="token punctuation">,</span> maxlen<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">)</span>
+x_test <span class="token operator">=</span> sequence<span class="token punctuation">.</span>pad_sequences<span class="token punctuation">(</span>x_test_seq<span class="token punctuation">,</span> maxlen<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> tensorflow<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>datasets <span class="token keyword">import</span> imdb
+<span class="token keyword">from</span> tensorflow<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>preprocessing <span class="token keyword">import</span> sequence
+<span class="token keyword">from</span> tensorflow<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>preprocessing<span class="token punctuation">.</span>text <span class="token keyword">import</span> Tokenizer<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">y_train<span class="token punctuation">,</span> train_text <span class="token operator">=</span> read_files<span class="token punctuation">(</span><span class="token string">'train'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>read train files: 25000</code></pre><pre class="line-numbers language-python"><code class="language-python">y_test<span class="token punctuation">,</span> train_text <span class="token operator">=</span>read_files<span class="token punctuation">(</span><span class="token string">'test'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>read test files: 25000</code></pre><pre class="line-numbers language-python"><code class="language-python">token <span class="token operator">=</span> Tokenizer<span class="token punctuation">(</span>num_words<span class="token operator">=</span><span class="token number">2000</span><span class="token punctuation">)</span>
+token<span class="token punctuation">.</span>fit_on_texts<span class="token punctuation">(</span>train_text<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">x_train_seq <span class="token operator">=</span> token<span class="token punctuation">.</span>texts_to_sequences<span class="token punctuation">(</span>train_text<span class="token punctuation">)</span>
+x_test_seq <span class="token operator">=</span> token<span class="token punctuation">.</span>texts_to_sequences<span class="token punctuation">(</span>test_text<span class="token punctuation">)</span>
+
+x_train <span class="token operator">=</span> sequence<span class="token punctuation">.</span>pad_sequences<span class="token punctuation">(</span>x_train_seq<span class="token punctuation">,</span> maxlen<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">)</span>
+x_test <span class="token operator">=</span> sequence<span class="token punctuation">.</span>pad_sequences<span class="token punctuation">(</span>x_test_seq<span class="token punctuation">,</span> maxlen<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> tensorflow<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>models <span class="token keyword">import</span> Sequential
+<span class="token keyword">from</span> tensorflow<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>core <span class="token keyword">import</span> Dense<span class="token punctuation">,</span> Dropout<span class="token punctuation">,</span> Activation<span class="token punctuation">,</span> Flatten
+<span class="token keyword">from</span> tensorflow<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>embeddings <span class="token keyword">import</span> Embedding<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">model <span class="token operator">=</span> Sequential<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Embedding<span class="token punctuation">(</span>output_dim<span class="token operator">=</span><span class="token number">32</span><span class="token punctuation">,</span> input_dim<span class="token operator">=</span><span class="token number">2000</span><span class="token punctuation">,</span> input_length<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Dropout<span class="token punctuation">(</span><span class="token number">0.2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Flatten<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Dense<span class="token punctuation">(</span>units<span class="token operator">=</span><span class="token number">256</span><span class="token punctuation">,</span>
+               activation<span class="token operator">=</span><span class="token string">'relu'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Dropout<span class="token punctuation">(</span><span class="token number">0.35</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Dense<span class="token punctuation">(</span>units<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> 
+               activation<span class="token operator">=</span><span class="token string">'sigmoid'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre><code>W0819 14:48:52.688199  9352 deprecation_wrapper.py:119] From E:\Anaconda3\envs\ml\lib\site-packages\keras\backend\tensorflow_backend.py:74: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+W0819 14:48:52.700166  9352 deprecation_wrapper.py:119] From E:\Anaconda3\envs\ml\lib\site-packages\keras\backend\tensorflow_backend.py:517: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+W0819 14:48:52.705153  9352 deprecation_wrapper.py:119] From E:\Anaconda3\envs\ml\lib\site-packages\keras\backend\tensorflow_backend.py:4138: The name tf.random_uniform is deprecated. Please use tf.random.uniform instead.
+
+W0819 14:48:52.720114  9352 deprecation_wrapper.py:119] From E:\Anaconda3\envs\ml\lib\site-packages\keras\backend\tensorflow_backend.py:133: The name tf.placeholder_with_default is deprecated. Please use tf.compat.v1.placeholder_with_default instead.
+
+W0819 14:48:52.730087  9352 deprecation.py:506] From E:\Anaconda3\envs\ml\lib\site-packages\keras\backend\tensorflow_backend.py:3445: calling dropout (from tensorflow.python.ops.nn_ops) with keep_prob is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `rate` instead of `keep_prob`. Rate should be set to `rate = 1 - keep_prob`.</code></pre><pre class="line-numbers language-python"><code class="language-python">model<span class="token punctuation">.</span>summary<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+embedding_1 (Embedding)      (None, 100, 32)           64000     
+_________________________________________________________________
+dropout_1 (Dropout)          (None, 100, 32)           0         
+_________________________________________________________________
+flatten_1 (Flatten)          (None, 3200)              0         
+_________________________________________________________________
+dense_1 (Dense)              (None, 256)               819456    
+_________________________________________________________________
+dropout_2 (Dropout)          (None, 256)               0         
+_________________________________________________________________
+dense_2 (Dense)              (None, 1)                 257       
+=================================================================
+Total params: 883,713
+Trainable params: 883,713
+Non-trainable params: 0
+_________________________________________________________________</code></pre><pre class="line-numbers language-python"><code class="language-python">model<span class="token punctuation">.</span>compile<span class="token punctuation">(</span>loss<span class="token operator">=</span><span class="token string">'binary_crossentropy'</span><span class="token punctuation">,</span>
+             optimizer<span class="token operator">=</span><span class="token string">'adam'</span><span class="token punctuation">,</span>
+             metrics<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'accuracy'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre><code>W0819 14:48:52.872310  9352 deprecation_wrapper.py:119] From E:\Anaconda3\envs\ml\lib\site-packages\keras\optimizers.py:790: The name tf.train.Optimizer is deprecated. Please use tf.compat.v1.train.Optimizer instead.
+
+W0819 14:48:52.896245  9352 deprecation_wrapper.py:119] From E:\Anaconda3\envs\ml\lib\site-packages\keras\backend\tensorflow_backend.py:3376: The name tf.log is deprecated. Please use tf.math.log instead.
+
+W0819 14:48:52.902229  9352 deprecation.py:323] From E:\Anaconda3\envs\ml\lib\site-packages\tensorflow\python\ops\nn_impl.py:180: add_dispatch_support.&lt;locals&gt;.wrapper (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where</code></pre><pre class="line-numbers language-python"><code class="language-python">train_history <span class="token operator">=</span> model<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>x_train<span class="token punctuation">,</span>
+                          y_train<span class="token punctuation">,</span>
+                          batch_size<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">,</span>
+                          epochs<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">,</span>
+                          verbose<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span>
+                          validation_split<span class="token operator">=</span><span class="token number">0.2</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre><code>Train on 20000 samples, validate on 5000 samples
+Epoch 1/10
+ - 4s - loss: 0.4585 - acc: 0.7695 - val_loss: 0.5365 - val_acc: 0.7516
+Epoch 2/10
+ - 4s - loss: 0.2481 - acc: 0.8981 - val_loss: 0.5019 - val_acc: 0.7854
+Epoch 3/10
+ - 4s - loss: 0.1478 - acc: 0.9465 - val_loss: 0.5992 - val_acc: 0.7796
+Epoch 4/10
+ - 4s - loss: 0.0739 - acc: 0.9754 - val_loss: 0.9505 - val_acc: 0.7286
+Epoch 5/10
+ - 4s - loss: 0.0425 - acc: 0.9866 - val_loss: 0.9713 - val_acc: 0.7640
+Epoch 6/10
+ - 4s - loss: 0.0321 - acc: 0.9888 - val_loss: 1.1840 - val_acc: 0.7470
+Epoch 7/10
+ - 4s - loss: 0.0246 - acc: 0.9914 - val_loss: 1.4026 - val_acc: 0.7220
+Epoch 8/10
+ - 4s - loss: 0.0247 - acc: 0.9914 - val_loss: 1.4726 - val_acc: 0.7214
+Epoch 9/10
+ - 4s - loss: 0.0243 - acc: 0.9907 - val_loss: 1.6475 - val_acc: 0.7066
+Epoch 10/10
+ - 4s - loss: 0.0216 - acc: 0.9920 - val_loss: 1.9692 - val_acc: 0.6810</code></pre><pre class="line-numbers language-python"><code class="language-python">scores <span class="token operator">=</span> model<span class="token punctuation">.</span>evaluate<span class="token punctuation">(</span>x_test<span class="token punctuation">,</span> y_test<span class="token punctuation">,</span> verbose<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>25000/25000 [==============================] - 1s 36us/step</code></pre><pre class="line-numbers language-python"><code class="language-python">scores<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>0.93452</code></pre><pre class="line-numbers language-python"><code class="language-python">predict <span class="token operator">=</span> model<span class="token punctuation">.</span>predict_classes<span class="token punctuation">(</span>x_test<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">predict<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">10</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>array([[1],
+       [1],
+       [1],
+       [1],
+       [1],
+       [1],
+       [1],
+       [1],
+       [1],
+       [1]])</code></pre><pre class="line-numbers language-python"><code class="language-python">predict_classes <span class="token operator">=</span> predict<span class="token punctuation">.</span>reshape<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+predict_classes<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">10</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre><code>array([1, 1, 1, 1, 1, 1, 1, 1, 1, 1])</code></pre><pre class="line-numbers language-python"><code class="language-python">SentimentDict <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">:</span> <span class="token string">'正面的'</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">:</span> <span class="token string">'负面的'</span><span class="token punctuation">}</span>
+
+
+<span class="token keyword">def</span> <span class="token function">display_test_SentimentDisct</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>test_text<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'label真实值：'</span><span class="token punctuation">,</span> SentimentDict<span class="token punctuation">[</span>y_test<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">'预测结果:'</span><span class="token punctuation">,</span>
+          SentimentDict<span class="token punctuation">[</span>predict_classes<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">display_test_SentimentDisct<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>As a recreational golfer with some knowledge of the sport's history, I was pleased with Disney's sensitivity to the issues of class in golf in the early twentieth century. The movie depicted well the psychological battles that Harry Vardon fought within himself, from his childhood trauma of being evicted to his own inability to break that glass ceiling that prevents him from being accepted as an equal in English golf society. Likewise, the young Ouimet goes through his own class struggles, being a mere caddie in the eyes of the upper crust Americans who scoff at his attempts to rise above his standing. What I loved best, however, is how this theme of class is manifested in the characters of Ouimet's parents. His father is a working-class drone who sees the value of hard work but is intimidated by the upper class; his mother, however, recognizes her son's talent and desire and encourages him to pursue his dream of competing against those who think he is inferior.Finally, the golf scenes are well photographed. Although the course used in the movie was not the actual site of the historical tournament, the little liberties taken by Disney do not detract from the beauty of the film. There's one little Disney moment at the pool table; otherwise, the viewer does not really think Disney. The ending, as in "Miracle," is not some Disney creation, but one that only human history could have written.
+label真实值： 正面的 预测结果: 正面的</code></pre><pre class="line-numbers language-python"><code class="language-python">display_test_SentimentDisct<span class="token punctuation">(</span><span class="token number">1250</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>This movie was well done but it also made me feel very down at times as well. For anyone that is considering show business this is a must see as it shows the raw deal in what goes on for these struggling workers. The soundtrack was definitely cool and the acting and dancing complimented it nicely. Some of the student's attitudes might have been a little far-fetched like Leroy's especially because I'm sure someone like that would've been kicked out immediately for refusing to read and such if this was the real High School For Performing Arts. The Coco screen test is hard to watch for any people out there with weak stomachs, please heed my warning. While it's very gritty I know it's the truth on what happens so in this respect the movie is right on. Overall it's entertaining and even though some parts drag on the majority goes by really quickly.Final Grouping:Movies: Probably would've skipped this one.DVD Purchase: Not something I'd need to see again and again.Rental: Worth renting at least once in your life!
+label真实值： 正面的 预测结果: 正面的</code></pre><pre class="line-numbers language-python"><code class="language-python">token <span class="token operator">=</span> Tokenizer<span class="token punctuation">(</span>num_words<span class="token operator">=</span><span class="token number">2800</span><span class="token punctuation">)</span>
+token<span class="token punctuation">.</span>fit_on_texts<span class="token punctuation">(</span>train_text<span class="token punctuation">)</span>
+
+x_train_seq <span class="token operator">=</span> token<span class="token punctuation">.</span>texts_to_sequences<span class="token punctuation">(</span>train_text<span class="token punctuation">)</span>
+x_test_seq <span class="token operator">=</span> token<span class="token punctuation">.</span>texts_to_sequences<span class="token punctuation">(</span>test_text<span class="token punctuation">)</span>
+
+x_train <span class="token operator">=</span> sequence<span class="token punctuation">.</span>pad_sequences<span class="token punctuation">(</span>x_train_seq<span class="token punctuation">,</span> maxlen<span class="token operator">=</span><span class="token number">380</span><span class="token punctuation">)</span>
+x_test <span class="token operator">=</span> sequence<span class="token punctuation">.</span>pad_sequences<span class="token punctuation">(</span>x_test_seq<span class="token punctuation">,</span> maxlen<span class="token operator">=</span><span class="token number">380</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">model <span class="token operator">=</span> Sequential<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Embedding<span class="token punctuation">(</span>output_dim<span class="token operator">=</span><span class="token number">32</span><span class="token punctuation">,</span>
+                   input_dim<span class="token operator">=</span><span class="token number">3800</span><span class="token punctuation">,</span>
+                   input_length<span class="token operator">=</span><span class="token number">380</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Dropout<span class="token punctuation">(</span><span class="token number">0.2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Flatten<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Dense<span class="token punctuation">(</span>units<span class="token operator">=</span><span class="token number">256</span><span class="token punctuation">,</span>
+               activation<span class="token operator">=</span><span class="token string">'relu'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Dropout<span class="token punctuation">(</span><span class="token number">0.2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>Dense<span class="token punctuation">(</span>units<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>
+               activation<span class="token operator">=</span><span class="token string">'sigmoid'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">model<span class="token punctuation">.</span>summary<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code>_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+embedding_2 (Embedding)      (None, 380, 32)           121600    
+_________________________________________________________________
+dropout_3 (Dropout)          (None, 380, 32)           0         
+_________________________________________________________________
+flatten_2 (Flatten)          (None, 12160)             0         
+_________________________________________________________________
+dense_3 (Dense)              (None, 256)               3113216   
+_________________________________________________________________
+dropout_4 (Dropout)          (None, 256)               0         
+_________________________________________________________________
+dense_4 (Dense)              (None, 1)                 257       
+=================================================================
+Total params: 3,235,073
+Trainable params: 3,235,073
+Non-trainable params: 0
+_________________________________________________________________</code></pre><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">Fair Wang</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://mysite.com/2020/05/12/Keras-%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E5%99%A8IMDb%E6%83%85%E6%84%9F%E5%88%86%E7%B1%BB/">http://mysite.com/2020/05/12/Keras-%E5%A4%9A%E5%B1%82%E6%84%9F%E7%9F%A5%E5%99%A8IMDb%E6%83%85%E6%84%9F%E5%88%86%E7%B1%BB/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint polocy. If reproduced, please indicate source
+                    <a href="/about" target="_blank">Fair Wang</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Keras/">
+                                    <span class="chip bg-color">Keras</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+            <div class="card">
+                <a href="/2020/05/12/Keras-cifar10%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Keras:cifar10图像分类">
+                        
+                        <span class="card-title">Keras:cifar10图像分类</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            from tensorflow.keras.datasets import cifar10
+import numpy as np
+np.random.seed(10)
+(x_img_train, y_label_train), (x_img
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-12
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Keras/" class="post-category">
+                                    Keras
+                                </a>
+                            
+                            <a href="/categories/Keras/Python/" class="post-category">
+                                    Python
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Keras/">
+                        <span class="chip bg-color">Keras</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/05/12/Keras-CNN-MNIST%E6%95%B0%E6%8D%AE%E9%9B%86/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="Keras:CNN_MNIST数据集">
+                        
+                        <span class="card-title">Keras:CNN_MNIST数据集</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            代码如下：
+import os 
+import tensorflow as tf
+from tensorflow.keras.datasets import mnist
+from tensorflow.keras.utils import 
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-12
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Keras/" class="post-category">
+                                    Keras
+                                </a>
+                            
+                            <a href="/categories/Keras/Python/" class="post-category">
+                                    Python
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Keras/">
+                        <span class="chip bg-color">Keras</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + 'From: ═╬﹎王zんí寳庫﹎╬═<br />'
+            + 'Author: Fair Wang<br />'
+            + 'Link: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='true'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2020</span>
+            <a href="/about" target="_blank">Fair Wang</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/zephyrGit" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:wangxwchn@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=904241059" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 904241059" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+<script language=javascript>
+    function siteTime() {
+        window.setTimeout("siteTime()", 1000);
+        var seconds = 1000;
+        var minutes = seconds * 60;
+        var hours = minutes * 60;
+        var days = hours * 24;
+        var years = days * 365;
+        var today = new Date();
+        var todayYear = today.getFullYear();
+        var todayMonth = today.getMonth() + 1;
+        var todayDate = today.getDate();
+        var todayHour = today.getHours();
+        var todayMinute = today.getMinutes();
+        var todaySecond = today.getSeconds();
+        /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+        year - 作为date对象的年份，为4位年份值
+        month - 0-11之间的整数，做为date对象的月份
+        day - 1-31之间的整数，做为date对象的天数
+        hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+        minutes - 0-59之间的整数，做为date对象的分钟数
+        seconds - 0-59之间的整数，做为date对象的秒数
+        microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+        var t1 = Date.UTC(2017, 09, 11, 00, 00, 00); //北京时间2018-2-13 00:00:00
+        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+        var diff = t2 - t1;
+        var diffYears = Math.floor(diff / years);
+        var diffDays = Math.floor((diff / days) - diffYears * 365);
+        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
+        document.getElementById("sitetime").innerHTML = "本站已运行 " +diffYears+" 年 "+diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+    }/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+</script>
+
+<span id="sitetime"></span>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+    <!--动态线条背景-->
+    <script type="text/javascript"
+	    color="122 103 238" opacity='0.7' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+    </script>
+    
+    <script type="text/javascript">
+    //只在桌面版网页启用特效
+    var windowWidth = $(window).width();
+    if (windowWidth > 768) {
+        document.write('<script type="text/javascript" src="/js/sakura.js"><\/script>');
+        }
+    </script>
+
+    <script src="/js/cursor.js"></script>
+
+
+<script src="/node_modules/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"node_modules/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/node_modules/assets/z16.model.json"},"log":false});</script></body>
+
+</html>
